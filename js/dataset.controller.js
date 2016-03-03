@@ -13,10 +13,11 @@ function getRecords(start, maxRecords){
         getData(offset);
         offset += 1000;
     }
+    return offset;
 }
 
 function getData(offset){
-    $.ajax({
+    jQuery.ajax({
         type: 'GET',
         url: 'https://data.seattle.gov/resource/3k2p-39jp.json?$offset='+offset+'&$where=within_circle(incident_location, 47.593307, -122.3343541, 1609.34)',
         success: function (data){
@@ -70,5 +71,4 @@ function loadTable(temp) {
     }
 
     document.getElementById('datatable').appendChild(tableBody);
-
 }

@@ -18,8 +18,9 @@ function getCatagoryCounts() {
     });
 }
 
+// Lists crimes by group and count for that group, should be up to date on load
 function buildList(temp){
-    //lists crimes by group and count for that group, should be up to date on load
+
     for (var i = 0; i < temp.length; i++) {
         var crime = temp[i];
         var crimeList = document.createElement('li');
