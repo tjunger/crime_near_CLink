@@ -1,0 +1,170 @@
+/*
+ * Styling for Socrata Code Challenge. Intended to override or extend Bootstrap CSS.
+*/
+body {
+    background: transparent url("../img/life-863164_1920.jpg") no-repeat top center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.navbar{
+    margin-bottom: 20px;
+    background-color: #002244;
+}
+.navbar-default .navbar-brand {
+    color: #69BE28;
+    font-family: 'Oswald', sans-serif;
+}
+
+.nav-tabs{
+    margin-top: 10px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: bold;
+}
+/*
+ * Styling for div in each tab jumbotron. Some redundancy. May refactor by creating a div class.
+*/
+
+#map {
+    min-height: 500px;
+}
+
+#statsDiv {
+    min-height: 500px;
+}
+
+#graphsDiv {
+    min-height: 500px;
+    font-family: 'Oswald', sans-serif;
+}
+
+
+#datasetDiv {
+    min-height: 600px;
+}
+/*
+ * Maps Tab Styling.
+*/
+
+.jumbotron-map{
+    background: rgba(255,255,255,.6);
+}
+.map-jumbotron-header{
+    font-family: 'Oswald', sans-serif;
+    color: #69BE28;
+
+}
+
+.sub-header {
+    font-family: 'Oswald', sans-serif;
+    color: #69BE28;
+    font-weight: normal;
+}
+
+.crime-list-item {
+    font-family: 'Oswald', sans-serif;
+    color: #002244;
+    font-weight: normal;
+    font-size: medium;
+}
+
+.table-bordered {
+    background-color: #FFFFFF;
+    font-family: 'Oswald', sans-serif;
+}
+
+.scroll {
+    max-height: 450px;
+    overflow: scroll;
+}
+/*
+ *
+ *
+*/
+
+.range {
+    display: table;
+    position: relative;
+    height: 25px;
+    margin-top: 20px;
+    background-color: rgb(245, 245, 245);
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.range input[type="range"] {
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    -ms-appearance: none !important;
+    -o-appearance: none !important;
+    appearance: none !important;
+
+    display: table-cell;
+    width: 100%;
+    background-color: transparent;
+    height: 25px;
+    cursor: pointer;
+}
+
+.range output {
+    display: table-cell;
+    padding: 3px 5px 2px;
+    min-width: 40px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(153, 153, 153);
+    text-align: center;
+    text-decoration: none;
+    border-radius: 4px;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    width: 1%;
+    white-space: nowrap;
+    vertical-align: middle;
+
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+
+    -webkit-user-select: none;
+    -moz-user-select: -moz-none;
+    user-select: none;
+}
+
+#updateMapBtn{
+    position: relative;
+    top: 15px;
+}
+
+/*
+ * CSS for d3 chart.
+ * http://bl.ocks.org/mbostock/1389927
+*/
+.bar rect {
+    fill: #69BE28;
+}
+
+.bar text.value {
+    fill: white;
+}
+
+.axis {
+    shape-rendering: crispEdges;
+}
+
+.axis path {
+    fill: none;
+}
+
+.x.axis line {
+    stroke: #fff;
+    stroke-opacity: .8;
+}
+
+.y.axis path {
+    stroke: white;
+}

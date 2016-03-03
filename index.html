@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>CenturyLink Crime Data</title>
+    <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <link href="css/CenturyLinkCD.css" rel="stylesheet">
+</head>
+<body>
+    <div>
+        <div id="wrapper" class="container-fluid">
+            <div class="row">
+                <!-- Navigation -->
+                <nav class="navbar navbar-default navbar-static-top" role="navigation">
+                    <div class="container-fluid">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <a class="navbar-brand" href=""><b>Crime Near CenturyLink Field</b></a>
+                        </div>
+                        <div>
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#mapTab" aria-controls="home" role="tab" data-toggle="tab">Map</a></li>
+                                <li role="presentation"><a href="#stats" aria-controls="profile" role="tab" data-toggle="tab">Statistics</a></li>
+                                <li role="presentation"><a href="#graphs" aria-controls="messages" role="tab" data-toggle="tab">Graphs</a></li>
+                                <li role="presentation"><a href="#dataset" aria-controls="settings" role="tab" data-toggle="tab">Data Set</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="mapTab">
+
+                        <div class="col-lg-10 col-md-10 col-sm-12 col-lg-offset-1 col-md-offset-1">
+                            <div class="jumbotron jumbotron-map">
+                                <h2 class="map-jumbotron-header" id="mapHeader">Incident Map (Circle Radius = 1 mile) - 1000 records</h2>
+                                <hr/>
+                                <label>Select Offset:</label>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-8 col-lg-offset-1 col-md-offset-1">
+                                        <div class="range">
+                                            <input type="range" name="range" min="0" max="135000" value="0" onchange="range.value=value">
+                                            <output id="range">0</output>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-lg-offset-1 col-md-offset-1 col-sm-3">
+                                        <!-- Adds 1000 pins to the map minus the overlap of pins already there -->
+                                    <form onclick="updateMap();">
+                                        <input class="btn btn-success btn-block" type="button" id="updateMapBtn" value="Update Map"/>
+                                    </form>
+                                    </div>
+                                </div>
+                                <br/><br/>
+                                <div id="map"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="stats">
+                        <div class="col-lg-10 col-lg-offset-1">
+                            <div class="jumbotron jumbotron-map">
+                                <h2 class="map-jumbotron-header">Statistics</h2>
+                                <hr/>
+                                <div id="statsDiv">
+                                    <div class="col-lg-8 col-lg-offset-2">
+                                        <h3 class="sub-header">Crimes By Type:</h3>
+                                    </div><br/>
+                                    <div class="row">
+                                        <div class="col-lg-6 col-lg-offset-3">
+                                            <ul id="crimes" class="crime-list-item">
+                                                <!-- li added dynamically in stats.controller.js -->
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="graphs">
+                        <div class="col-lg-10 col-md-10 col-sm-12 col-lg-offset-1 col-md-offset-1">
+                            <div class="jumbotron jumbotron-map">
+                                <h2 class="map-jumbotron-header">Graphs</h2>
+                                <hr/>
+
+                                <div id="graphsDiv" class="container-fluid">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="dataset">
+                        <div class="col-lg-10 col-lg-offset-1">
+                            <div class="jumbotron jumbotron-map">
+                                <h2 class="map-jumbotron-header">Data Set</h2>
+                                <hr/>
+                                <div id="datasetDiv">
+                                    <div class="col-lg-10 col-lg-offset-1">
+                                        <div class="scroll">
+                                            <table class="table table-bordered" id="datatable">
+                                                <thead>
+                                                    <tr>
+                                                        <th>CAD Event Number</th>
+                                                        <th>Time On Scene</th>
+                                                        <th>Location</th>
+                                                        <th>Longitude</th>
+                                                        <th>Latitude</th>
+                                                        <th>Event Clearance Group</th>
+                                                    </tr>
+                                                </thead>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Jquery lib, google hosted -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+        integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous">
+    </script>
+    <!-- Google Maps API, not best practice to put key in code, but for a project of this scope, it shouldn't be an issue-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdDtcnQH14rv1K3J5ZE7o16h6T0TrcYeo&callback=initMap"
+    async defer></script>
+
+    <script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+    <!-- Each tab has its own controller that visualizes the data in different ways -->
+    <script src="controllers/maps.controller.js"></script>
+    <script src="controllers/stats.controller.js"></script>
+    <script src="controllers/dataset.controller.js"></script>
+    <script src="controllers/graphs.controller.js"></script>
+</body>
+</html>
