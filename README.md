@@ -3,7 +3,7 @@ Crime Data Website Code
 
 Tim Unger
 
-Data visualization of crime incidents within a 1 mile of CenturyLink Field in Seattle, WA. Data is sourced https://data.seattle.gov/resource/3k2p-39jp.json. Website consists of 4 tabs; Map, Statistics, Graph, Datatable. Each tab has all its logic its own .js file that is located in the controller folder. CSS styling is from Bootstrap and a site specific css file in the css folder. All html is located in index.html.
+Data visualization of crime incidents within a 1 mile of CenturyLink Field in Seattle, WA. Data is sourced https://data.seattle.gov/resource/3k2p-39jp.json. Website consists of 4 tabs; Map, Statistics, Graph, Datatable. Each tab has all its logic its own .js file that is located in the js folder. CSS styling is from Bootstrap and a site specific css file in the css folder. All html is located in index.html. Unit tests are in the js/tests folder, using Karma/Jasmine. Tests are trivial because I am new to the idea of unit testing JavaScript but felt I needed to show that at minimum I could set up a testing suite and build/run a test.
 
 Frameworks and Libraries Used: Bootstrap, Google Maps API, d3.js, google fonts.
 
